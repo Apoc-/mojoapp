@@ -1,0 +1,86 @@
+#logoText {
+	font-family: "FuturaCdExBd", sans-serif;
+	font-size: 3em;
+	font-weight: 900;
+	font-stretch: extra-condensed;
+}
+
+#logoSubText {
+	font-family: "HelveticaFr", sans-serif;
+	font-size: 1em;
+}
+
+#greetingText, #todayFeelText {
+	font-family: "HelveticaFr", sans-serif;
+	font-size: 1.5em;
+}
+
+#back  {
+	font-family: "HelveticaFr", sans-serif;
+	font-size: 1em;
+	text-align: right;
+}
+
+#todayFeelButtonContainer {
+
+}
+
+#stressedContainer, #tiredContainer, #confusedContainer {
+	font-family: "FuturaCdExBd", sans-serif;
+	font-size: 2em;
+	text-align: center;
+	padding: 0.5em;
+}
+
+#separatorContainer1, #separatorContainer2 {
+	font-family: "FuturaCdExBd", sans-serif;
+	font-size: 2em;
+	text-align: center;
+}
+
+#stressedContainer {
+
+}
+
+#tiredContainer {
+
+}
+
+#confusedContainer {
+
+}
+
+.baseCircle {
+	-webkit-transition-duration: 10s;
+	-webkit-transition-property: all;
+	-webkit-transition-timing-function: ease-in-out;
+	background: red;
+	color: white;
+	border-radius: 100%;
+	padding: 20px;
+	width: 0px;
+	height: 0px;
+}
+
+.extendedCircle {
+	width: 400px;
+	height: 400px;
+}
+
+@font-face {
+	font-family: "FuturaCdExBd";
+	src: url("../Fonts/FuturaStd/FuturaStd-CondensedExtraBd.otf")
+	format("opentype");
+}
+
+@font-face {
+	font-family: "HelveticaFr";
+	src: url("../Fonts/Helvetica/HelveticaLTStd-Fractions.otf")
+	format("opentype");
+}
+
+@font-face {
+	font-family: "HelveticaBlkCd";
+	src: url("../Fonts/Helvetica/HelveticaLTStd-BlkCond.otf")
+	format("opentype");
+}
