@@ -11,27 +11,11 @@ $(document).ready(function () {
     //bind page transitions
     $(".eza_button").on("tap", function () {
         var target = $(this).attr("href");
-        eza_hide(".eza_active_page", function () {
-            eza_show(target);
-        });
+        eza_transition_to(target);
     });
 
     //bind back button
     $(".eza_back_button").on("tap", eza_back);
-
-    //bind circles
-    $("#stressedCircle").on("taphold", function() {
-        $this = $(this);
-        $this.addClass("extendedCircle");
-        console.log("taphold");
-    }).on("tapend", function() {
-        $this = $(this);
-        $this.removeClass("extendedCircle");
-        console.log("tapend");
-    });
-    $("#stressedCircle").on("tap", function() {
-        console.log("tap");
-    });
 
     //hide footer
     $(".eza_footer").hide();
@@ -45,8 +29,13 @@ $(document).ready(function () {
     }, splashTime);
 });
 
+function eza_transition_to(pageId) {
+    eza_hide(".eza_active_page", function () {
+        eza_show(pageId);
+    });
+}
+
 function eza_show(obj, callback) {
-    console.log("showing " + obj);
     var target = $(obj);
     var fadeTime = target.data("eza-fadein");
 
@@ -74,7 +63,6 @@ function eza_show(obj, callback) {
 }
 
 function eza_hide(obj, callback) {
-    console.log("hide " + obj);
     var target = $(obj);
     var fadeTime = target.data("eza-fadeout");
 
