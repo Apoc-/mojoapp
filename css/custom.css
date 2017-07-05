@@ -28,6 +28,8 @@
 
 	--main-font: "Lato-Regular", sans-serif;
 	--bold-font: "Lato-Black", sans-serif;
+
+	--logo-filter: invert(0%);
 }
 
 /* blue grey dark */
@@ -46,6 +48,11 @@
 	--relaxed-color: #2ecc71;
 	--energized-color: #e74c3c;
 	--focused-color: #f1c40f;
+
+	--main-font: "Lato-Regular", sans-serif;
+	--bold-font: "Lato-Black", sans-serif;
+
+	--logo-filter: invert(100%);
 }*/
 
 /* pages */
@@ -62,7 +69,7 @@
 }
 
 
-#splashPage, #greetingPage, #feelPage {
+#splashPage, #greetingPage, #feelPage, #pairingPage {
 	background-color: var(--primary-color);
 }
 
@@ -81,7 +88,7 @@
 	color: var(--font-color);
 }*/
 
-#greetingText {
+#greetingText, #pairingText {
 	font-family: var(--main-font);
 	font-size: 4vh;
 	color: var(--font-color);
@@ -284,4 +291,5 @@
 	width: 100vw;
 	height: 66vh;
 	margin-left: 7.5vw;
+	filter: var(--logo-filter);
 }
