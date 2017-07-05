@@ -25,6 +25,9 @@
 	--relaxed-color: #2ecc71;
 	--energized-color: #e74c3c;
 	--focused-color: #f1c40f;
+
+	--main-font: "Lato-Regular", sans-serif;
+	--bold-font: "Lato-Black", sans-serif;
 }
 
 /* blue grey dark */
@@ -46,10 +49,24 @@
 }*/
 
 /* pages */
+
+.logo_container {
+	width: 300px;
+	height: 300px;
+	text-align: center;
+	line-height: 300px;
+}
+
+.logo_container img {
+	vertical-align: middle;
+}
+
+
 #splashPage, #greetingPage, #feelPage {
 	background-color: var(--primary-color);
 }
 
+/*
 #logoText {
 	font-family: "FuturaCdExBd", sans-serif;
 	font-size: 7vh;
@@ -62,23 +79,23 @@
 	font-family: "HelveticaFr", sans-serif;
 	font-size: 3vh;
 	color: var(--font-color);
-}
+}*/
 
 #greetingText {
-	font-family: "HelveticaFr", sans-serif;
+	font-family: var(--main-font);
 	font-size: 4vh;
 	color: var(--font-color);
 }
 
 #todayFeelText {
-	font-family: "HelveticaFr", sans-serif;
+	font-family: var(--main-font);
 	font-size: 3vh;
 	color: var(--font-color);
 }
 
 #back  {
-	font-family: "HelveticaNeueLTStd-Blk", sans-serif;
-	font-size: 1em;
+	font-family: var(--bold-font);
+	font-size: 3vh;
 	color: var(--font-color);
 }
 
@@ -114,7 +131,7 @@
 
 /* feel texts */
 #relaxedText, #energizedText, #focusedText {
-	font-family: "FuturaCdExBd", sans-serif;
+	font-family: var(--bold-font);
 	font-size: 25vh;
 	-webkit-transition-property: color;
 	-webkit-transition-duration: 3s;
@@ -154,7 +171,7 @@
 
 /**/
 #stressedContainer, #tiredContainer, #confusedContainer {
-	font-family: "FuturaCdExBd", sans-serif;
+	font-family: var(--bold-font);
 	font-size: 6vh;
 	text-align: center;
 	padding: 1vh;
@@ -162,7 +179,7 @@
 }
 
 #separatorContainer1, #separatorContainer2 {
-	font-family: "FuturaCdExBd", sans-serif;
+	font-family: var(--bold-font);
 	font-size: 4vh;
 	text-align: center;
 }
@@ -212,11 +229,16 @@
 */
 
 /* asd */
-@media(orientation: portrait) {
+/*@media(orientation: portrait) {
 	.extendedCircle {
-		width: 100vh;
-		height: 100vh;
+		width: 98vh;
+		height: 98vh;
 	}
+}*/
+
+.extendedCircle {
+	width: 94vh;
+	height: 94vh;
 }
 
 
@@ -242,4 +264,24 @@
 	font-family: "HelveticaNeueLTStd-Blk";
 	src: url("../Fonts/Helvetica/HelveticaNeueLTStd-Blk.otf")
 	format("opentype");
+}
+
+@font-face {
+	font-family: "Lato-Black";
+	src: url("../Fonts/Lato/Lato-Black.ttf")
+	format("truetype");
+}
+
+@font-face {
+	font-family: "Lato-Regular";
+	src: url("../Fonts/Lato/Lato-Regular.ttf")
+	format("truetype");
+}
+
+
+/* stuff */
+.logo {
+	width: 100vw;
+	height: 66vh;
+	margin-left: 7.5vw;
 }

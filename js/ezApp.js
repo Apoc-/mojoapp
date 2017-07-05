@@ -25,6 +25,8 @@ $(document).ready(function () {
     setTimeout(function () {
         eza_hide(".eza_splash", function () {
             eza_show(".eza_active_page");
+            //TODO REMOVE
+            doPairing();
         });
     }, splashTime);
 });

@@ -14,11 +14,16 @@
 
     <div class="eza_app">
         <div class="eza_pages">
-            <div id="splashPage" data-eza-fadeout="1500" class="eza_splash">
-                <div id="logoText" class="eza_center_25">m&omacr;jo</div>
-                <div id="logoSubText" class="eza_center_35">mojorize your life</div>
+            <div id="splashPage" data-eza-fadeout="1500" class="eza_splash eza_no_scroll_page">
+                <!--<div id="logoText" class="eza_center_25">m&omacr;jo</div>
+                <div id="logoSubText" class="eza_center_35">mojorize your life</div>-->
+                <img src="gfx/logo.svg" class="logo"/>
             </div>
-            <div id="greetingPage" data-eza-fadein="1500" data-eza-fadeout="1200" class="eza_page eza_active_page eza_no_footer">
+            <div id="pairingPage" data-eza-fadein="1500" data-eza-fadeout="1200" class="eza_page eza_active_page eza_no_footer">
+                <div id="pairingText" class="eza_center_25">Pairing</div>
+                <a href="#greetingPage" class="eza_button eza_fullscreen"></a>
+            </div>
+            <div id="greetingPage" data-eza-fadein="1500" data-eza-fadeout="1200" class="eza_page eza_no_footer">
                 <div id="greetingText" class="eza_center_25">hello fellow</div>
                 <a href="#feelPage" class="eza_button eza_fullscreen"></a>
             </div>
