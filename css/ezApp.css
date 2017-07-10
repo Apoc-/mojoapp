@@ -37,6 +37,21 @@ a.eza_button, a.eza_back_button {
     overflow: hidden !important;
 }
 
+.eza_center_90 {
+    margin: 0;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.eza_center_80 {
+    margin: 0;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 .eza_center_75 {
     margin: 0;

@@ -185,7 +185,15 @@
 	color: var(--font-color);
 }
 
-#separatorContainer1, #separatorContainer2 {
+#dayButtonContainer, #weekButtonContainer {
+	font-family: var(--bold-font);
+	font-size: 3vh;
+	text-align: center;
+	padding: 1vh;
+	color: var(--font-color);
+}
+
+.menu_separator {
 	font-family: var(--bold-font);
 	font-size: 4vh;
 	text-align: center;
