@@ -18,13 +18,13 @@
 	--dark-color: #D3D3D3;
 	--light-color: #ffffff;
 
-	--stressed-color: #c0392b;
-	--tired-color: #3f51b5;
-	--confused-color: #00796b;
+	--stressed-color: #00b2a5;
+	--tired-color: #4F49FE;
+	--confused-color: #3F7687;
 
-	--relaxed-color: #2ecc71;
-	--energized-color: #e74c3c;
-	--focused-color: #f1c40f;
+	--relaxed-color: #00b2a5;
+	--energized-color: #4F49FE;
+	--focused-color: #3F7687;
 
 	--main-font: "Lato-Regular", sans-serif;
 	--bold-font: "Lato-Black", sans-serif;
@@ -73,6 +73,10 @@
 	background-color: var(--primary-color);
 }
 
+#feelButtonContainer {
+	line-height: 10vh;
+}
+
 /*
 #logoText {
 	font-family: "FuturaCdExBd", sans-serif;
@@ -94,7 +98,7 @@
 	color: var(--font-color);
 }
 
-#todayFeelText {
+#feelText {
 	font-family: var(--main-font);
 	font-size: 3vh;
 	color: var(--font-color);
@@ -182,7 +186,19 @@
 	font-size: 6vh;
 	text-align: center;
 	padding: 1vh;
-	color: var(--font-color);
+
+}
+
+#stressedContainer {
+	color: var(--stressed-color);
+}
+
+#tiredContainer{
+	color: var(--tired-color);
+}
+
+#confusedContainer {
+	color: var(--confused-color);
 }
 
 #dayButtonContainer, #weekButtonContainer {
@@ -199,6 +215,7 @@
 	text-align: center;
 }
 
+/*
 #stressedPage {
 	background-color: var(--stressed-color);
 }
@@ -210,6 +227,7 @@
 #confusedPage {
 	background-color: var(--confused-color);
 }
+*/
 
 .baseCircle {
 	-webkit-transition-duration: 10s;
@@ -254,6 +272,10 @@
 .extendedCircle {
 	width: 94vh;
 	height: 94vh;
+}
+
+.circle_canvas {
+
 }
 
 

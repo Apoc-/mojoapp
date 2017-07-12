@@ -9,8 +9,10 @@
     <script defer src="js/jquery-3.2.1.min.js"></script>
     <script defer src="js/jquery.mobile-events.min.js"></script>
     <script defer src="js/highcharts.js"></script>
+    <script defer src="js/jcanvas.min.js"></script>
     <script defer src="js/ezApp.js"></script>
     <script defer src="js/controller.js"></script>
+
 </head>
 <body>
     <link href="https://fonts.googleapis.com/css?family=Exo:400,700,900&amp;subset=latin-ext" rel="stylesheet">
@@ -21,56 +23,65 @@
 
     <div class="eza_app">
         <div class="eza_pages">
-            <div id="splashPage" data-eza-fadeout="1500" class="eza_splash eza_no_scroll_page">
+            <div id="splashPage" data-eza-fadeout="100" class="eza_splash eza_no_scroll_page">
                 <!--<div id="logoText" class="eza_center_25">m&omacr;jo</div>
                 <div id="logoSubText" class="eza_center_35">mojorize your life</div>-->
                 <img src="gfx/logo.svg" class="logo"/>
             </div>
-            <div id="pairingPage" data-eza-fadein="1500" data-eza-fadeout="1200" class="eza_page eza_active_page eza_no_footer">
+            <div id="pairingPage" data-eza-fadein="100" data-eza-fadeout="100" class="eza_page eza_active_page eza_no_footer">
                 <div id="pairingText" class="eza_center_25">Pairing</div>
                 <!--<a href="#greetingPage" class="eza_button eza_fullscreen"></a>-->
             </div>
-            <div id="greetingPage" data-eza-fadein="1500" data-eza-fadeout="1200" class="eza_page eza_no_footer">
+            <div id="greetingPage" data-eza-fadein="100" data-eza-fadeout="100" class="eza_page eza_no_footer">
                 <div id="greetingText" class="eza_center_25">hello fellow</div>
                 <a href="#feelPage" class="eza_button eza_fullscreen"></a>
             </div>
-            <div id="feelPage" data-eza-fadein="1500" class="eza_page eza_no_footer">
+            <div id="feelPage" data-eza-fadein="100" class="eza_page eza_no_footer">
                 <div class="eza_content">
-                    <div id="todayFeelText" class="eza_center_10">today I feel</div>
-                    <div id="todayFeelButtonContainer" class="eza_center_45">
+                    <div id="feelText" class="eza_center_10">I feel</div>
+                    <div id="feelButtonContainer" class="eza_center_45">
                         <a href="#stressedPage" class="eza_button"><div id="stressedContainer">stressed</div></a>
-                        <div class="menu_separator"><hr></div>
+
                         <a href="#tiredPage" class="eza_button"><div id="tiredContainer">tired</div></a>
-                        <div class="menu_separator"><hr></div>
+
                         <a href="#confusedPage" class="eza_button"><div id="confusedContainer">confused</div></a>
                     </div>
                     <div id="statPageButtonContainer" class="eza_center_90">
-                        <a href="#dayPage" class="eza_button"><div id="dayButtonContainer">My day</div></a>
-                        <div class="menu_separator"><hr></div>
-                        <a href="#weekPage" class="eza_button"><div id="weekButtonContainer">My week</div></a>
+                        <a href="#dayPage" class="eza_button"><img src="gfx/analyticsLogo.svg" class="logo"/></a>
                     </div>
                 </div>
             </div>
             <div id="stressedPage" class="eza_page eza_no_scroll_page">
+                <canvas id="stressedCanvas" class="circle_canvas"></canvas>
+            </div>
+            <div id="tiredPage" class="eza_page eza_no_scroll_page">
+                <canvas id="tiredCanvas" class="circle_canvas"></canvas>
+            </div>
+            <div id="confusedPage" class="eza_page eza_no_scroll_page">
+                <canvas id="confusedCanvas" class="circle_canvas"></canvas>
+            </div>
+
+
+            <!--<div id="stressedPage" class="eza_page eza_no_scroll_page">
                 <div id="stressedCircle" class="baseCircle eza_center_50"></div>
             </div>
             <div id="relaxedPage" class="eza_page eza_no_scroll_page">
                 <div id="relaxedText" class="eza_center_50">RE<br>LAX<br>ED</div>
-            </div>
+            </div>-->
 
-            <div id="tiredPage" class="eza_page .eza_no_scroll_page">
+            <!--<div id="tiredPage" class="eza_page .eza_no_scroll_page">
                 <div id="tiredCircle" class="baseCircle eza_center_50"></div>
             </div>
             <div id="energizedPage" class="eza_page eza_no_scroll_page">
                 <div id="energizedText" class="eza_center_50">ENE<br>RGI<br>ZED</div>
-            </div>
+            </div>-->
 
-            <div id="confusedPage" class="eza_page eza_no_scroll_page">
+            <!--<div id="confusedPage" class="eza_page eza_no_scroll_page">
                 <div id="confusedCircle" class="baseCircle eza_center_50"></div>
             </div>
             <div id="focusedPage" class="eza_page eza_no_scroll_page">
                 <div id="focusedText" class="eza_center_50">FO<br>CUS<br>ED</div>
-            </div>
+            </div>-->
 
             <div id="dayPage" class="eza_page eza_no_scroll_page">
                 <div id="dayGraphContainer" style="width:100vw; height:100vh; background-color: #00c853;">
