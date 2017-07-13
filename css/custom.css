@@ -281,8 +281,8 @@ a {
 }
 
 #statIcon {
-	height: 10vh;
-	margin-left: 40vw;
+	width: 14vw;
+	margin-left: 43vw;
 }
 
 html, body, .ui-content {
