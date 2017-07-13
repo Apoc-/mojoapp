@@ -52,6 +52,11 @@ $(document).ready(function() {
     initConfusedCircleEvent("#confusedCanvas", ccd);
 
     animloop();
+
+    document.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+        return false;
+    });
 });
 
 function restoreStressCircles() {
