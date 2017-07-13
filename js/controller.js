@@ -36,6 +36,7 @@ var ccd = {
     jit_m: 100
 };
 
+
 var scd_base = jQuery.extend(true, {}, scd);
 var tcd_base = jQuery.extend(true, {}, tcd);
 var ccd_base = jQuery.extend(true, {}, ccd);
@@ -60,15 +61,41 @@ $(document).ready(function () {
         return false;
     });
 
-    $("#splashPage").on("pageshow", function () {
+    $("#splashPage").one("pageshow", function () {
+        bindStartAnimationEvents();
         setTimeout(function () {
             $.mobile.navigate("#pairingPage", {
                 transition: "fade"
             });
         }, 2500);
+
+        generateRandomLookup();
+
     });
 
-    $("#pairingPage").on("pageshow", function () {
+
+});
+
+var lookupTable = [];
+function generateRandomLookup() {
+    for (var i=1e6; i>0; i--) {
+        lookupTable.push(Math.random());
+    }
+
+}
+
+var cr = 0;
+function lookup() {
+    var n = lookupTable[cr];
+    cr++;
+    if(cr>=lookupTable.length) {
+        cr = 0;
+    }
+    return n;
+}
+
+function bindStartAnimationEvents() {
+    $("#pairingPage").one("pageshow", function () {
         setTimeout(function () {
             $.mobile.navigate("#greetingPage", {
                 transition: "fade"
@@ -76,7 +103,7 @@ $(document).ready(function () {
         }, 3000);
     });
 
-    $("#greetingPage").on("pageshow", function () {
+    $("#greetingPage").one("pageshow", function () {
         setTimeout(function () {
             $.mobile.navigate("#happyPage", {
                 transition: "fade"
@@ -84,14 +111,14 @@ $(document).ready(function () {
         }, 2000);
     });
 
-    $("#happyPage").on("pageshow", function () {
+    $("#happyPage").one("pageshow", function () {
         setTimeout(function () {
             $.mobile.navigate("#feelPage", {
                 transition: "fade"
             });
         }, 3000);
     });
-});
+}
 
 function restoreStressCircles() {
     scd = jQuery.extend(true, {}, scd_base);
@@ -247,6 +274,10 @@ function initSettings() {
     settings.relaxedColor = style.getPropertyValue("--relaxed-color");
     settings.energizedColor = style.getPropertyValue("--energized-color");
     settings.focusedColor = style.getPropertyValue("--focused-color");
+
+    settings.relaxedColor = settings.relaxedColor.replace(" ","");
+    settings.energizedColor = settings.energizedColor.replace(" ","");
+    settings.focusedColor = settings.focusedColor.replace(" ","");
 }
 
 function initFeelingData() {
@@ -338,8 +369,8 @@ function drawDayCanvas() {
     var ctx = canvas[0].getContext("2d");
     var w = canvas.width();
     var h = canvas.height();
-    var radius = 150;
-    var radius_outer = 66;
+    var radius = 100;
+    var radius_outer = 75;
     var colors = [settings.relaxedColor, settings.energizedColor, settings.focusedColor];
     var times = [];
 
@@ -407,21 +438,36 @@ function drawPoint(ctx, x, y, size, color) {
 
 function drawFillPointCircle(ctx, centerX, centerY, radius, amount, color) {
     var size = 3;
-    ctx.fillStyle = color;
+    var col = hexToRGB(color,0.9);
+    ctx.fillStyle = col;
     ctx.beginPath();
 
-
     for (var i = 0; i < amount; i++) {
-        var r_rnd = Math.random() * radius * radius;
-        var th_rnd = Math.random() * 2 * Math.PI;
+        var r_rnd = lookup() * radius * radius;
+        var th_rnd = lookup() * 2 * Math.PI;
+
+        //var x = r_rnd * Math.cos(th_rnd) + centerX;
+        //var y = r_rnd * Math.sin(th_rnd) + centerY;
 
         var x = Math.sqrt(r_rnd) * Math.cos(th_rnd) + centerX;
         var y = Math.sqrt(r_rnd) * Math.sin(th_rnd) + centerY;
 
         ctx.arc(x, y, size, 0, 2 * Math.PI);
-        ctx.fill();
         ctx.closePath();
     }
 
+    ctx.fill();
 
+}
+
+function hexToRGB(hex, alpha) {
+    var r = parseInt(hex.slice(1, 3), 16),
+        g = parseInt(hex.slice(3, 5), 16),
+        b = parseInt(hex.slice(5, 7), 16);
+
+    if (alpha) {
+        return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
+    } else {
+        return "rgb(" + r + ", " + g + ", " + b + ")";
+    }
 }
