@@ -21,7 +21,7 @@
 
     <div class="eza_app">
         <div class="eza_pages">
-            <div id="splashPage" data-eza-fadeout="100" class="eza_splash eza_no_scroll_page">
+            <div id="splashPage" data-eza-fadeout="100" class="eza_splash eza_no_scroll_page eza_no_footer">
                 <img src="gfx/logo.svg" class="logo"/>
             </div>
             <div id="pairingPage" data-eza-fadein="100" data-eza-fadeout="100" class="eza_page eza_active_page eza_no_footer">
@@ -47,23 +47,25 @@
                     </div>
                 </div>
             </div>
-            <div id="stressedPage" class="eza_page eza_no_scroll_page">
+            <div id="stressedPage" class="eza_page eza_no_scroll_page eza_no_footer">
                 <canvas id="stressedCanvas" class="circle_canvas"></canvas>
             </div>
-            <div id="tiredPage" class="eza_page eza_no_scroll_page">
+            <div id="tiredPage" class="eza_page eza_no_scroll_page eza_no_footer">
                 <canvas id="tiredCanvas" class="circle_canvas"></canvas>
             </div>
-            <div id="confusedPage" class="eza_page eza_no_scroll_page">
+            <div id="confusedPage" class="eza_page eza_no_scroll_page eza_no_footer">
                 <canvas id="confusedCanvas" class="circle_canvas"></canvas>
             </div>
             <div id="dayPage" class="eza_page eza_no_scroll_page">
                 <div id="dayGraphContainer" style="width:100vw; height:100vh; background-color: #00c853;">
                 </div>
             </div>
-
             <div id="weekPage" class="eza_page eza_no_scroll_page">
                 week
             </div>
+        </div>
+        <div id="footer" class="eza_footer">
+            <a href="#" class="eza_back_button"><div id="back" class="eza_center_50">back</div></a>
         </div>
     </div>
 
