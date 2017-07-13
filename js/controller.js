@@ -36,37 +36,6 @@ var ccd = {
     jit_m: 100
 };
 
-var scd_day = {
-    radius: 100,
-    pointCount: 200,
-    rot_c: 0,
-    rot_s: 0.01,
-    rot_r: 0,
-    amp: 0,
-    T: 3,
-    jit_m: 0
-};
-var tcd_day = {
-    radius: 100,
-    pointCount: 200,
-    rot_c: 0,
-    rot_s: 0.08,
-    rot_r: 0.05,
-    amp: 5,
-    T: 20,
-    jit_m: 0.2
-};
-var ccd_day = {
-    radius: 100,
-    pointCount: 12,
-    rot_c: 0,
-    rot_s: 0.04,
-    rot_r: 0,
-    amp: 0,
-    T: 24,
-    jit_m: 1
-};
-
 var scd_base = jQuery.extend(true, {}, scd);
 var tcd_base = jQuery.extend(true, {}, tcd);
 var ccd_base = jQuery.extend(true, {}, ccd);
@@ -91,23 +60,23 @@ $(document).ready(function () {
         return false;
     });
 
-    $("#splashPage").on("pageshow", function() {
+    $("#splashPage").on("pageshow", function () {
         setTimeout(function () {
             $.mobile.navigate("#pairingPage", {
                 transition: "fade"
             });
-        }, 1000);
+        }, 2500);
     });
 
-    $("#pairingPage").on("pageshow", function() {
+    $("#pairingPage").on("pageshow", function () {
         setTimeout(function () {
             $.mobile.navigate("#greetingPage", {
                 transition: "fade"
             });
-        }, 4000);
+        }, 3000);
     });
 
-    $("#greetingPage").on("pageshow", function() {
+    $("#greetingPage").on("pageshow", function () {
         setTimeout(function () {
             $.mobile.navigate("#happyPage", {
                 transition: "fade"
@@ -115,7 +84,7 @@ $(document).ready(function () {
         }, 2000);
     });
 
-    $("#happyPage").on("pageshow", function() {
+    $("#happyPage").on("pageshow", function () {
         setTimeout(function () {
             $.mobile.navigate("#feelPage", {
                 transition: "fade"
@@ -257,7 +226,6 @@ function animloop() {
     window.requestAnimationFrame(animloop);
     updateCanvases();
 }
-
 function updateCanvases() {
     //update stress canvas
     clearCanvases();
@@ -265,33 +233,13 @@ function updateCanvases() {
     drawTiredCanvas();
     drawConfusedCanvas();
     drawDayCanvas();
+
 }
 
 function clearCanvases() {
     canvases.forEach(function (element) {
         element[0].getContext("2d").clearRect(0, 0, element[0].width, element[0].height);
     });
-}
-
-function animateLoadingIcon() {
-    setTimeout(function () {
-        $.mobile.navigate("#greetingPage", {
-            transition: "fade"
-        });
-
-        setTimeout(function() {
-            $.mobile.navigate("#happyPage", {
-                transition: "fade"
-            });
-
-            setTimeout(function() {
-                $.mobile.navigate("#feelPage", {
-                    transition: "fade"
-                });
-            }, 3000);
-        }, 1500);
-    }, 4000);
-
 }
 
 function initSettings() {
@@ -302,7 +250,7 @@ function initSettings() {
 }
 
 function initFeelingData() {
-    $("#feelPage").on("pageshow", function() {
+    $("#feelPage").on("pageshow", function () {
         restoreStressCircles();
     });
 
@@ -390,17 +338,14 @@ function drawDayCanvas() {
     var ctx = canvas[0].getContext("2d");
     var w = canvas.width();
     var h = canvas.height();
-
-    var data = [scd_day, tcd_day, ccd_day];
+    var radius = 150;
+    var radius_outer = 66;
     var colors = [settings.relaxedColor, settings.energizedColor, settings.focusedColor];
-    var feelTimeSum = feelingData.relaxedTime + feelingData.energizedTime + feelingData.focusedTime;
-    var ratio = [];
+    var times = [];
 
-    if (feelTimeSum > 0) {
-        ratio.push(feelingData.relaxedTime / feelTimeSum);
-        ratio.push(feelingData.energizedTime / feelTimeSum);
-        ratio.push(feelingData.focusedTime / feelTimeSum);
-    }
+    times.push(feelingData.relaxedTime);
+    times.push(feelingData.energizedTime);
+    times.push(feelingData.focusedTime);
 
     if (w > 0 && h > 0) {
         //get points on radius
@@ -408,17 +353,10 @@ function drawDayCanvas() {
         var center_y = h / 2;
         for (var n = 1; n <= 3; n++) {
             var angle = (2 * Math.PI / 3) * n + (2 / 3) * Math.PI + (1 / 6) * Math.PI;
-            var x = data[n - 1].radius * Math.cos(angle) + center_x;
-            var y = data[n - 1].radius * Math.sin(angle) + center_y;
-            var r = ratio[n - 1];
+            var x = radius_outer * Math.cos(angle) + center_x;
+            var y = radius_outer * Math.sin(angle) + center_y;
 
-            if (feelTimeSum > 0) {
-                data[n - 1].radius = r * 150 + 50;
-            }
-
-
-            drawPointCircle(ctx, x, y, data[n - 1], colors[n - 1]);
-            data[n - 1].rot_c += data[n - 1].rot_s;
+            drawFillPointCircle(ctx, x, y, radius, times[n - 1]/100, colors[n - 1]);
         }
 
         //draw circles on points
@@ -465,4 +403,25 @@ function drawPoint(ctx, x, y, size, color) {
     //ctx.fillStyle = "rgba(" + r + "," + g + "," + b + "," + a + ")";
     ctx.fill();
     ctx.closePath();
+}
+
+function drawFillPointCircle(ctx, centerX, centerY, radius, amount, color) {
+    var size = 3;
+    ctx.fillStyle = color;
+    ctx.beginPath();
+
+
+    for (var i = 0; i < amount; i++) {
+        var r_rnd = Math.random() * radius * radius;
+        var th_rnd = Math.random() * 2 * Math.PI;
+
+        var x = Math.sqrt(r_rnd) * Math.cos(th_rnd) + centerX;
+        var y = Math.sqrt(r_rnd) * Math.sin(th_rnd) + centerY;
+
+        ctx.arc(x, y, size, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+    }
+
+
 }
