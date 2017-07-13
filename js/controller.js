@@ -180,12 +180,13 @@ function initConfusedCircleEvent(canvas) {
 
             if(ccd.jit_m > 1) {
                 ccd.jit_m /= 1.075;
+                ccd.amp /= 2;
+
             } else {
                 if(ccd.pointCount > 12) {
                     ccd.pointCount /= 1.2;
                 }
-
-                ccd.amp /= 2;
+                
                 if(ccd.rot_s < 0.04) {
                     ccd.rot_s += 0.005;
                 }
