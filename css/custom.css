@@ -318,8 +318,9 @@
 
 /* stuff */
 .logo {
-	width: 100vw;
-	height: 66vh;
-	margin-left: 7.5vw;
+	width: 50vw;
+	height: 20vh;
+	margin-left: 25vw;
+	margin-top: 40vh;
 	filter: var(--logo-filter);
 }

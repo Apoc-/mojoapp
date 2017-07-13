@@ -37,134 +37,139 @@ var ccd = {
     jit_m: 100
 };
 
+var scd_base = jQuery.extend(true, {}, scd);
+var tcd_base = jQuery.extend(true, {}, tcd);
+var ccd_base = jQuery.extend(true, {}, ccd);
+
 
 $(document).ready(function() {
     initSettings();
     initFeelingData();
     initCanvases();
 
-    //bind circles
-    //initCircleEvent("#stressedCircle","#relaxedPage","#relaxedText");
-    initCircleEvent("#tiredCircle","#energizedPage","#energizedText");
-    initCircleEvent("#confusedCircle","#focusedPage","#focusedText");
-
     initStressCircleEvent("#stressedCanvas", scd);
     initTiredCircleEvent("#tiredCanvas", tcd);
     initConfusedCircleEvent("#confusedCanvas", ccd);
 
-    $("#confusedCircle").on("tapstart", function() {
-        $this = $(this);
-        $this.addClass("extendedCircle");
-    });
-
-    $("#confusedCircle").on("tapend", function() {
-        $this = $(this);
-        $this.removeClass("extendedCircle");
-    });
-
-    initChart("Until now I became","dayGraphContainer");
-
-    setInterval(draw,100);
     animloop();
-
-
 });
 
-function initStressCircleEvent(canvas, circleData) {
+function restoreStressCircles() {
+    scd = jQuery.extend(true, {}, scd_base);
+    tcd = jQuery.extend(true, {}, tcd_base);
+    ccd = jQuery.extend(true, {}, ccd_base);
+}
+
+function initStressCircleEvent(canvas) {
     var $canvas = $(canvas);
     var timer;
-    var sd = circleData;
-
-    $canvas.on("tapstart", function() {
+    $canvas.on("tapstart", function(e) {
         $this = $(this);
+        var t0 = e.timeStamp;
         timer = setInterval(function() {
-            if(sd.rot_s > 0.01) {
-                sd.rot_s /= 1.015;
+            console.log(scd.rot_s);
+            if(scd.rot_s > 0.01) {
+                scd.rot_s /= 1.015;
             }
 
-            if(sd.jit_m > 0) {
-                sd.jit_m /= 1.1;
+            if(scd.jit_m > 0) {
+                scd.jit_m /= 1.1;
             }
 
-            if(sd.jit_m < 0) {
-                sd.jit_m = 0;
+            if(scd.jit_m < 0) {
+                scd.jit_m = 0;
             }
 
-            if(sd.amp > 0) {
-                sd.amp /= 1.05;
+            if(scd.amp > 0) {
+                scd.amp /= 1.05;
             }
 
-            if(sd.rot_r > 0) {
-                sd.rot_r /= 1.07;
+            if(scd.rot_r > 0) {
+                scd.rot_r /= 1.07;
             }
         }, 100);
 
-        $this.on("tapend", function() {
+        $this.one("tapend", function(e) {
             clearInterval(timer);
+            var t = e.timeStamp;
+            if(t-t0 > 1000) {
+                eza_transition_to("#feelPage");
+                restoreStressCircles();
+            }
         })
     });
 }
 
-function initTiredCircleEvent(canvas, circleData) {
+function initTiredCircleEvent(canvas) {
     var $canvas = $(canvas);
     var timer;
-    var sd = circleData;
 
-    $canvas.on("tapstart", function() {
-        $this = $(this);
+    $canvas.on("tapstart", function(e) {
+        $this = $(this)
+        var t0 = e.timeStamp;
         timer = setInterval(function() {
-            if(sd.rot_s < 1) {
-                sd.rot_s += 0.0025;
+            if(tcd.rot_s < 1) {
+                tcd.rot_s += 0.0025;
             }
 
-            if(sd.jit_m < 0.2) {
-                sd.jit_m += 0.005;
+            if(tcd.jit_m < 0.2) {
+                tcd.jit_m += 0.005;
             }
 
-            if(sd.amp < 20) {
-                sd.amp += 0.075;
+            if(tcd.amp < 20) {
+                tcd.amp += 0.075;
             }
 
-            if(sd.rot_r < 0.05) {
-                sd.rot_r += 0.005;
+            if(tcd.rot_r < 0.05) {
+                tcd.rot_r += 0.005;
             }
         }, 100);
 
-        $this.on("tapend", function() {
+        $this.on("tapend", function(e) {
             clearInterval(timer);
+            var t = e.timeStamp;
+            if(t-t0 > 1000) {
+                eza_transition_to("#feelPage");
+                restoreStressCircles();
+            }
         })
     });
 }
 
-function initConfusedCircleEvent(canvas, circleData) {
+function initConfusedCircleEvent(canvas) {
     var $canvas = $(canvas);
     var timer;
-    var sd = circleData;
 
-    $canvas.on("tapstart", function() {
+    $canvas.on("tapstart", function(e) {
         $this = $(this);
+        var t0 = e.timeStamp;
         timer = setInterval(function() {
 
-            if(sd.jit_m > 1) {
-                sd.jit_m /= 1.075;
+            if(ccd.jit_m > 1) {
+                ccd.jit_m /= 1.075;
             } else {
-                if(sd.pointCount > 12) {
-                    sd.pointCount /= 1.2;
+                if(ccd.pointCount > 12) {
+                    ccd.pointCount /= 1.2;
                 }
 
-                sd.amp /= 2;
-                if(sd.rot_s < 0.04) {
-                    sd.rot_s += 0.005;
+                ccd.amp /= 2;
+                if(ccd.rot_s < 0.04) {
+                    ccd.rot_s += 0.005;
                 }
 
-                if(sd.pointCount < 12) {
-                    sd.pointCount = 12;
+                if(ccd.pointCount < 12) {
+                    ccd.pointCount = 12;
                 }
             }
         }, 100);
 
-        $this.on("tapend", function() {
+        $this.on("tapend", function(e) {
             clearInterval(timer);
+            var t = e.timeStamp;
+            if(t-t0 > 1000) {
+                eza_transition_to("#feelPage");
+                restoreStressCircles();
+            }
         })
     });
 }
