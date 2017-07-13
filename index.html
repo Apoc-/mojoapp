@@ -6,62 +6,84 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 
     <script defer src="mdl/material.min.js"></script>
-    <script defer src="js/jquery-3.2.1.min.js"></script>
-    <script defer src="js/jquery.mobile-events.min.js"></script>
-    <script defer src="js/jcanvas.min.js"></script>
-    <script defer src="js/ezApp.js"></script>
-    <script defer src="js/controller.js"></script>
+    <!--<script defer src="js/jquery-3.2.1.min.js"></script>-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/jquery.mobile-events.min.js"></script>
+    <script src="js/jcanvas.min.js"></script>
+    <script src="js/controller.js"></script>
 
 </head>
 <body>
+    <!--<link rel="stylesheet" href="css/reset.css"/>-->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <link href="https://fonts.googleapis.com/css?family=Exo:400,700,900&amp;subset=latin-ext" rel="stylesheet">
-    <link rel="stylesheet" href="css/reset.css"/>
     <link rel="stylesheet" href="css/ezApp.css"/>
     <link rel="stylesheet" href="css/custom.css"/>
 
-    <div class="eza_app">
-        <div class="eza_pages">
-            <div id="splashPage" data-eza-fadeout="100" class="eza_splash eza_no_scroll_page eza_no_footer">
-                <img src="gfx/logo.svg" class="logo"/>
-            </div>
-            <div id="pairingPage" data-eza-fadein="100" data-eza-fadeout="100" class="eza_page eza_active_page eza_no_footer">
-                <div id="pairingText" class="eza_center_25">Pairing</div>
-                <!--<a href="#greetingPage" class="eza_button eza_fullscreen"></a>-->
-            </div>
-            <div id="greetingPage" data-eza-fadein="100" data-eza-fadeout="100" class="eza_page eza_no_footer">
-                <div id="greetingText" class="eza_center_25">hello fellow</div>
-                <a href="#feelPage" class="eza_button eza_fullscreen"></a>
-            </div>
-            <div id="feelPage" data-eza-fadein="100" class="eza_page eza_no_footer">
-                <div class="eza_content">
-                    <div id="feelText" class="eza_center_10">I feel</div>
-                    <div id="feelButtonContainer" class="eza_center_45">
-                        <a href="#stressedPage" class="eza_button"><div id="stressedContainer">stressed</div></a>
-                        <a href="#tiredPage" class="eza_button"><div id="tiredContainer">tired</div></a>
-                        <a href="#confusedPage" class="eza_button"><div id="confusedContainer">confused</div></a>
-                    </div>
-                    <div id="dayPageButtonContainer" class="eza_center_90">
-                        <a href="#dayPage" class="eza_button"><img src="gfx/analyticsLogo.svg" class="logo"/></a>
-                    </div>
-                </div>
-            </div>
-            <div id="stressedPage" class="eza_page eza_no_scroll_page eza_no_footer">
-                <canvas id="stressedCanvas"></canvas>
-            </div>
-            <div id="tiredPage" class="eza_page eza_no_scroll_page eza_no_footer">
-                <canvas id="tiredCanvas"></canvas>
-            </div>
-            <div id="confusedPage" class="eza_page eza_no_scroll_page eza_no_footer">
-                <canvas id="confusedCanvas"></canvas>
-            </div>
-            <div id="dayPage" class="eza_page eza_no_scroll_page">
-                <canvas id="dayCanvas"></canvas>
-            </div>
-        </div>
-        <div id="footer" class="eza_footer">
-            <a href="#" class="eza_back_button"><div id="back" class="eza_center_50">back</div></a>
+    <div data-role="page" id="splashPage">
+        <div data-role="main" class="ui-content">
+            <img src="gfx/logo.svg" class="logo"/>
         </div>
     </div>
 
+    <div data-role="page" id="pairingPage">
+        <div data-role="main" class="ui-content">
+            <img src="gfx/loadIcon.svg" id="loadingIcon" class="animatedLogo"/>
+        </div>
+    </div>
+
+    <div data-role="page" id="greetingPage">
+        <div data-role="main" class="ui-content">
+            <div id="greetingText" class="eza_center_50">hello fellow!</div>
+        </div>
+    </div>
+
+    <div data-role="page" id="happyPage">
+        <div data-role="main" class="ui-content">
+            <div id="happyPageText" class="eza_center_50">Happiness<br>is close...</div>
+        </div>
+    </div>
+
+    <div data-role="page" id="feelPage">
+        <div data-role="main" class="ui-content">
+            <div id="feelText" class="eza_center_10">I feel</div>
+            <div id="feelButtonContainer" class="eza_center_45">
+                <a href="#stressedPage" data-transition="fade"><div id="stressedContainer">stressed</div></a>
+                <a href="#tiredPage" data-transition="fade"><div id="tiredContainer">tired</div></a>
+                <a href="#confusedPage" data-transition="fade"><div id="confusedContainer">confused</div></a>
+            </div>
+            <div id="dayPageButtonContainer">
+                <input href="#dayPage" data-transition="fade"><img src="gfx/analyticsLogo.svg"/></input>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" id="stressedPage">
+        <div data-role="main" class="ui-content">
+            <canvas id="stressedCanvas"></canvas>
+        </div>
+    </div>
+
+    <div data-role="page" id="tiredPage">
+        <div data-role="main" class="ui-content">
+            <canvas id="tiredCanvas"></canvas>
+        </div>
+    </div>
+
+    <div data-role="page" id="confusedPage">
+        <div data-role="main" class="ui-content">
+            <canvas id="confusedCanvas"></canvas>
+        </div>
+    </div>
+
+    <div data-role="page" id="dayPage">
+        <div data-role="main" class="ui-content">
+            <canvas id="dayCanvas"></canvas>
+        </div>
+        <div data-role="footer">
+            back
+        </div>
+    </div>
 </body>
 </html>

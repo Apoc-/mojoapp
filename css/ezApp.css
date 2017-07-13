@@ -116,21 +116,3 @@ a.eza_button, a.eza_back_button {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
-
-.eza_header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 48px;
-    background-color: lightgray;
-}
-
-.eza_footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 32px;
-}

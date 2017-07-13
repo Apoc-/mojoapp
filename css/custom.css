@@ -1,19 +1,7 @@
-/*:root {
-	--main-color: white;
-	--font-color: black;
-
-	--accent-color: #D3D3D3;
-
-	--feeling-bad-color: #c0392b;
-	--relaxed-color: #2ecc71;
-	--energized-color: #e74c3c;
-	--focused_color: #f1c40f;
-}*/
-
 /* blue grey light */
 :root {
 	--primary-color: #ffffff;
-	--font-color: #000000;
+	--font-color: #213C54;
 
 	--dark-color: #D3D3D3;
 	--light-color: #ffffff;
@@ -27,33 +15,9 @@
 	--focused-color: #3F7687;
 
 	--main-font: "Lato-Regular", sans-serif;
-	--bold-font: "Lato-Black", sans-serif;
-
-	--logo-filter: invert(0%);
+	--black-font: "Lato-Black", sans-serif;
+	--bold-font: "Lato-Bold", sans-serif;
 }
-
-/* blue grey dark */
-/*
-:root {
-	--primary-color: #263238;
-	--font-color: #ffffff;
-
-	--dark-color: #000a12;
-	--light-color: #4f5b62;
-
-	--stressed-color: #c0392b;
-	--tired-color: #3f51b5;
-	--confused-color: #00796b;
-
-	--relaxed-color: #2ecc71;
-	--energized-color: #e74c3c;
-	--focused-color: #f1c40f;
-
-	--main-font: "Lato-Regular", sans-serif;
-	--bold-font: "Lato-Black", sans-serif;
-
-	--logo-filter: invert(100%);
-}*/
 
 /* pages */
 
@@ -77,23 +41,8 @@
 	line-height: 10vh;
 }
 
-/*
-#logoText {
-	font-family: "FuturaCdExBd", sans-serif;
-	font-size: 7vh;
-	font-weight: 900;
-	font-stretch: extra-condensed;
-	color: var(--font-color);
-}
-
-#logoSubText {
-	font-family: "HelveticaFr", sans-serif;
-	font-size: 3vh;
-	color: var(--font-color);
-}*/
-
-#greetingText, #pairingText {
-	font-family: var(--main-font);
+#greetingText, #pairingText, #happyPageText {
+	font-family: var(--bold-font);
 	font-size: 4vh;
 	color: var(--font-color);
 }
@@ -105,7 +54,7 @@
 }
 
 #back  {
-	font-family: var(--bold-font);
+	font-family: var(--black-font);
 	font-size: 3vh;
 	color: var(--font-color);
 }
@@ -142,13 +91,8 @@
 
 /* feel texts */
 #relaxedText, #energizedText, #focusedText {
-	font-family: var(--bold-font);
+	font-family: var(--black-font);
 	font-size: 25vh;
-	-webkit-transition-property: color;
-	-webkit-transition-duration: 3s;
-	-webkit-transition-delay: 0.5s;
-	-webkit-transition-timing-function: ease-in-out;
-	z-index: 10;
 }
 
 #relaxedText {
@@ -182,7 +126,7 @@
 
 /**/
 #stressedContainer, #tiredContainer, #confusedContainer {
-	font-family: var(--bold-font);
+	font-family: var(--black-font);
 	font-size: 6vh;
 	text-align: center;
 	padding: 1vh;
@@ -202,7 +146,7 @@
 }
 
 #dayButtonContainer, #weekButtonContainer {
-	font-family: var(--bold-font);
+	font-family: var(--black-font);
 	font-size: 3vh;
 	text-align: center;
 	padding: 1vh;
@@ -210,24 +154,10 @@
 }
 
 .menu_separator {
-	font-family: var(--bold-font);
+	font-family: var(--black-font);
 	font-size: 4vh;
 	text-align: center;
 }
-
-/*
-#stressedPage {
-	background-color: var(--stressed-color);
-}
-
-#tiredPage {
-	background-color: var(--tired-color);
-}
-
-#confusedPage {
-	background-color: var(--confused-color);
-}
-*/
 
 .baseCircle {
 	-webkit-transition-duration: 10s;
@@ -252,26 +182,14 @@
 	background: var(--focused-color);
 }
 
-/*
-@media(orientation: landscape) {
-	.extendedCircle {
-		width: 109vw;
-		height: 109vw;
-	}
-}
-*/
-
-/* asd */
-/*@media(orientation: portrait) {
-	.extendedCircle {
-		width: 98vh;
-		height: 98vh;
-	}
-}*/
-
 .extendedCircle {
 	width: 94vh;
 	height: 94vh;
+}
+
+.in, .out {
+	animation-timing-function: ease-in-out;
+	animation-duration: 1000ms !important;
 }
 
 @font-face {
@@ -305,6 +223,12 @@
 }
 
 @font-face {
+	font-family: "Lato-Bold";
+	src: url("../Fonts/Lato/Lato-Bold.ttf")
+	format("truetype");
+}
+
+@font-face {
 	font-family: "Lato-Regular";
 	src: url("../Fonts/Lato/Lato-Regular.ttf")
 	format("truetype");
@@ -317,5 +241,36 @@
 	height: 20vh;
 	margin-left: 25vw;
 	margin-top: 40vh;
-	filter: var(--logo-filter);
+}
+
+.animatedLogo {
+	width: 50vw;
+	height: 20vh;
+	margin-left: 25vw;
+	margin-top: 40vh;
+	animation-name: spin;
+	animation-duration: 4s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+
+}
+
+a {
+	text-decoration: none; /* no underline */
+}
+
+#dayPageButtonContainer {
+	width: 100vw;
+	height: 100vh;
+}
+
+@keyframes spin {
+	from {transform: rotate(0deg) scale(0.25,0.25);}
+	to {transform: rotate(360deg) scale(0.25,0.25);}
+}
+
+html, body, .ui-content {
+	height: 100vh;
+	margin: 0;
+	padding: 0;
 }
