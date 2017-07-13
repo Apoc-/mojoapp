@@ -54,7 +54,6 @@ $(document).ready(function () {
     initConfusedCircleEvent("#confusedCanvas", ccd);
 
     animloop();
-    animloop_slow();
 
     document.addEventListener('contextmenu', function (event) {
         event.preventDefault();
