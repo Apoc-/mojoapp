@@ -3,8 +3,8 @@
  */
 var settings = {};
 var feelingData = {};
-var dayChart = {};
 var canvases = [];
+
 var scd = {
     radius: 150,
     pointCount: 200,
@@ -25,7 +25,6 @@ var tcd = {
     T: 20,
     jit_m: 0
 };
-
 var ccd = {
     radius: 100,
     pointCount: 500,
@@ -40,7 +39,6 @@ var ccd = {
 var scd_base = jQuery.extend(true, {}, scd);
 var tcd_base = jQuery.extend(true, {}, tcd);
 var ccd_base = jQuery.extend(true, {}, ccd);
-
 
 $(document).ready(function() {
     initSettings();
@@ -198,58 +196,6 @@ function clearCanvases() {
     });
 }
 
-function initChart(title, containerId) {
-    var data = getDayData();
-
-    dayChart = Highcharts.chart(containerId, {
-        chart: {
-            type: 'pie'
-        },
-        title: {
-            text: title
-        },
-        yAxis: {
-            title: {
-                text: 'Percentage for feels'
-            }
-        },
-        series: [{
-            name: 'Percentage',
-            data: data
-        }],
-        tooltip: {
-            valueSuffix: 'ms'
-        }
-    });
-}
-
-function updateDayChart() {
-    var data = getDayData();
-    dayChart.series[0].setData(data);
-}
-
-function getDayData() {
-    data = [];
-
-    data.push({
-        name: "Relaxed",
-        y: feelingData.relaxedTime,
-        color: settings.relaxedColor
-    });
-    data.push({
-        name: "Energized",
-        y: feelingData.energizedTime,
-        color: settings.energizedColor
-    });
-    data.push({
-        name: "Focused",
-        y: feelingData.focusedTime,
-        color: settings.focusedColor
-    });
-
-    return data;
-}
-
 function doPairing() {
     var pt = $("#pairingText");
     var done = false;
@@ -385,18 +331,6 @@ function drawPointCircle(ctx, centerX, centerY, circleData, color) {
     }
 }
 
-
-function drawPixel(ctx, x, y, r, g, b, a) {
-    var px = ctx.createImageData(1,1);
-    var dt  = px.data;
-    dt[0]   = r;
-    dt[1]   = g;
-    dt[2]   = b;
-    dt[3]   = a;
-
-    ctx.putImageData( px, x, y );
-}
-
 function drawPoint(ctx, x, y, size, color) {
     ctx.fillStyle = color;
     ctx.beginPath();
@@ -404,46 +338,4 @@ function drawPoint(ctx, x, y, size, color) {
     //ctx.fillStyle = "rgba(" + r + "," + g + "," + b + "," + a + ")";
     ctx.fill();
     ctx.closePath();
-}
-
-
-function initCircleEvent(circleId, pageId, textId) {
-    $(circleId).on("tapstart", function () {
-        var txt = $(textId);
-        var pg = $(pageId);
-
-        pg.removeClass("transit");
-        txt.removeClass("transit");
-        txt.removeClass("easein");
-
-        //increment counter
-        var incIntervalTimer = setInterval(function() {
-            incrementFeelingDate(circleId);
-        }, 100);
-
-        $this = $(this);
-        $this.on("tapend", function() {
-            clearInterval(incIntervalTimer);
-            $this.removeClass("extendedCircle");
-        });
-
-        $this.one("transitionend", function () {
-            if ($this.width() > $("body").width() - 10) {
-                eza_transition_to(pageId);
-                txt.addClass("easein");
-                txt.one("transitionend", function () {
-                    pg.addClass("transit");
-                    txt.addClass("transit");
-
-                    pg.one("transitionend", function () {
-                        pg.one("click", function () {
-                            eza_transition_to("#feelPage");
-                        })
-                    })
-                });
-            }
-        });
-
-        $this.addClass("extendedCircle");
-    });
 }
