@@ -91,13 +91,37 @@ $(document).ready(function () {
         return false;
     });
 
-    setTimeout(function () {
-        $.mobile.navigate("#pairingPage", {
-            transition: "fade"
-        });
+    $("#splashPage").on("pageshow", function() {
+        setTimeout(function () {
+            $.mobile.navigate("#pairingPage", {
+                transition: "fade"
+            });
+        }, 1000);
+    });
 
-        animateLoadingIcon();
-    }, 1000);
+    $("#pairingPage").on("pageshow", function() {
+        setTimeout(function () {
+            $.mobile.navigate("#greetingPage", {
+                transition: "fade"
+            });
+        }, 4000);
+    });
+
+    $("#greetingPage").on("pageshow", function() {
+        setTimeout(function () {
+            $.mobile.navigate("#happyPage", {
+                transition: "fade"
+            });
+        }, 2000);
+    });
+
+    $("#happyPage").on("pageshow", function() {
+        setTimeout(function () {
+            $.mobile.navigate("#feelPage", {
+                transition: "fade"
+            });
+        }, 3000);
+    });
 });
 
 function restoreStressCircles() {
