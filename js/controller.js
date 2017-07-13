@@ -66,7 +66,7 @@ $(document).ready(function () {
             $.mobile.navigate("#pairingPage", {
                 transition: "fade"
             });
-        }, 1);
+        }, 2500);
     });
 
     $("#pairingPage").on("pageshow", function () {
@@ -74,7 +74,7 @@ $(document).ready(function () {
             $.mobile.navigate("#greetingPage", {
                 transition: "fade"
             });
-        }, 1);
+        }, 3000);
     });
 
     $("#greetingPage").on("pageshow", function () {
@@ -82,7 +82,7 @@ $(document).ready(function () {
             $.mobile.navigate("#happyPage", {
                 transition: "fade"
             });
-        }, 1);
+        }, 2000);
     });
 
     $("#happyPage").on("pageshow", function () {
@@ -90,7 +90,7 @@ $(document).ready(function () {
             $.mobile.navigate("#feelPage", {
                 transition: "fade"
             });
-        }, 1);
+        }, 3000);
     });
 });
 
