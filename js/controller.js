@@ -120,6 +120,8 @@ function initStressCircleEvent(canvas) {
             if(scd.rot_r > 0) {
                 scd.rot_r /= 1.07;
             }
+
+            incrementFeelingDate("stressed");
         }, 100);
 
         $this.one("tapend", function(e) {
@@ -156,6 +158,8 @@ function initTiredCircleEvent(canvas) {
             if(tcd.rot_r < 0.05) {
                 tcd.rot_r += 0.005;
             }
+
+            incrementFeelingDate("tired");
         }, 100);
 
         $this.on("tapend", function(e) {
@@ -186,7 +190,7 @@ function initConfusedCircleEvent(canvas) {
                 if(ccd.pointCount > 12) {
                     ccd.pointCount /= 1.2;
                 }
-                
+
                 if(ccd.rot_s < 0.04) {
                     ccd.rot_s += 0.005;
                 }
@@ -195,6 +199,8 @@ function initConfusedCircleEvent(canvas) {
                     ccd.pointCount = 12;
                 }
             }
+
+            incrementFeelingDate("confused");
         }, 100);
 
         $this.on("tapend", function(e) {
@@ -257,21 +263,21 @@ function initSettings() {
 }
 
 function initFeelingData() {
-    feelingData.relaxedTime = 0.1;
-    feelingData.focusedTime = 0.1;
-    feelingData.energizedTime = 0.1;
+    feelingData.relaxedTime = 0.0;
+    feelingData.focusedTime = 0.0;
+    feelingData.energizedTime = 0.0;
 }
 
 function incrementFeelingDate(feeling) {
     switch(feeling) {
-        case "#stressedCircle":
+        case "stressed":
             feelingData.relaxedTime += 100;
         break;
-        case "#tiredCircle":
-            feelingData.focusedTime += 100;
-        break;
-        case "#confusedCircle":
+        case "tired":
             feelingData.energizedTime += 100;
+        break;
+        case "confused":
+            feelingData.focusedTime += 100;
         break;
     }
 }
@@ -343,7 +349,16 @@ function drawDayCanvas() {
     var h = canvas.height();
 
     var data = [scd_day,tcd_day,ccd_day];
-    var colors = [settings.relaxedColor,settings.energizedColor,settings.focusedColor]
+    var colors = [settings.relaxedColor,settings.energizedColor,settings.focusedColor];
+    var feelTimeSum = feelingData.relaxedTime + feelingData.energizedTime + feelingData.focusedTime;
+    var ratio = [];
+
+    if(feelTimeSum > 0) {
+        ratio.push(feelingData.relaxedTime / feelTimeSum);
+        ratio.push(feelingData.energizedTime / feelTimeSum);
+        ratio.push(feelingData.focusedTime / feelTimeSum);
+    }
+
     if(w>0 && h>0) {
         //get points on radius
         var center_x = w/2;
@@ -352,6 +367,12 @@ function drawDayCanvas() {
             var angle = (2*Math.PI/3) * n + (2/3)*Math.PI + (1/6)*Math.PI;
             var x = data[n-1].radius * Math.cos(angle) + center_x;
             var y = data[n-1].radius * Math.sin(angle) + center_y;
+            var r = ratio[n-1];
+
+            if(feelTimeSum > 0) {
+                data[n-1].radius = r * 150 + 50;
+            }
+
 
             drawPointCircle(ctx,x,y,data[n-1], colors[n-1]);
             data[n-1].rot_c += data[n-1].rot_s;
