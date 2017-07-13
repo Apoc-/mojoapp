@@ -72,6 +72,7 @@ function eza_hide(obj, callback) {
         callback = function () {
         };
     }
+
     if (fadeTime != undefined) {
         target.fadeOut(fadeTime).promise().done(callback);
     } else {

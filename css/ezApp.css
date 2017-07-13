@@ -27,7 +27,7 @@ a.eza_button, a.eza_back_button {
     text-decoration: none; /* no underline */
 }
 
-.eza_page, .eza_fullscreen, .eza_splash {
+.eza_fullscreen, .eza_splash, .eza_page {
     position: relative;
     height: 100vh;
     width: 100vw;

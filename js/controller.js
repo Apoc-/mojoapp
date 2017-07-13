@@ -36,6 +36,37 @@ var ccd = {
     jit_m: 100
 };
 
+var scd_day = {
+    radius: 100,
+    pointCount: 200,
+    rot_c: 0,
+    rot_s: 0.01,
+    rot_r: 0,
+    amp: 0,
+    T: 3,
+    jit_m: 0
+};
+var tcd_day = {
+    radius: 100,
+    pointCount: 200,
+    rot_c: 0,
+    rot_s: 0.08,
+    rot_r: 0.05,
+    amp: 20,
+    T: 20,
+    jit_m: 0.2
+};
+var ccd_day = {
+    radius: 100,
+    pointCount: 12,
+    rot_c: 0,
+    rot_s: 0.04,
+    rot_r: 0,
+    amp: 0,
+    T: 24,
+    jit_m: 1
+};
+
 var scd_base = jQuery.extend(true, {}, scd);
 var tcd_base = jQuery.extend(true, {}, tcd);
 var ccd_base = jQuery.extend(true, {}, ccd);
@@ -70,7 +101,6 @@ function initStressCircleEvent(canvas) {
         $this = $(this);
         var t0 = e.timeStamp;
         timer = setInterval(function() {
-            console.log(scd.rot_s);
             if(scd.rot_s > 0.01) {
                 scd.rot_s /= 1.015;
             }
@@ -182,17 +212,13 @@ function animloop(){
     updateCanvases();
 }
 
-function draw() {
-    updateDayChart();
-
-}
-
 function updateCanvases() {
     //update stress canvas
     clearCanvases();
     drawStressCanvas();
     drawTiredCanvas();
     drawConfusedCanvas();
+    drawDayCanvas();
 }
 
 function clearCanvases() {
@@ -265,6 +291,12 @@ function initCanvases() {
     canvas.attr("width", $(document).width());
     canvas.attr("height", $(document).height());
     canvases.push(canvas);
+
+    //day stat canvas
+    var canvas = $("#dayCanvas");
+    canvas.attr("width", $(document).width());
+    canvas.attr("height", $(document).height());
+    canvases.push(canvas);
 }
 
 function drawStressCanvas() {
@@ -300,6 +332,34 @@ function drawConfusedCanvas() {
     if(w>0 && h>0) {
         drawPointCircle(ctx,w/2,h/2,ccd, settings.focusedColor);
         ccd.rot_c += ccd.rot_s;
+    }
+}
+
+function drawDayCanvas() {
+    var canvas = canvases[3];
+    var ctx = canvas[0].getContext("2d");
+    var w = canvas.width();
+    var h = canvas.height();
+
+    var data = [scd_day,tcd_day,ccd_day];
+    var colors = [settings.relaxedColor,settings.energizedColor,settings.focusedColor]
+    if(w>0 && h>0) {
+        //get points on radius
+        var center_x = w/2;
+        var center_y = h/2;
+        for(var n=1; n<=3; n++) {
+            var angle = (2*Math.PI/3) * n + (2/3)*Math.PI + (1/6)*Math.PI;
+            var x = data[n-1].radius * Math.cos(angle) + center_x;
+            var y = data[n-1].radius * Math.sin(angle) + center_y;
+
+            drawPointCircle(ctx,x,y,data[n-1], colors[n-1]);
+            data[n-1].rot_c += data[n-1].rot_s;
+        }
+
+        //draw circles on points
+
+
+
     }
 }
 
