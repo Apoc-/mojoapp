@@ -23,7 +23,7 @@
 
     <div data-role="page" id="splashPage">
         <div data-role="main" class="ui-content">
-            <img src="gfx/logo.svg" class="logo"/>
+            <img src="gfx/mojoLogo.svg" class="logo"/>
         </div>
     </div>
 
@@ -54,7 +54,7 @@
                 <a href="#confusedPage" data-transition="fade"><div id="confusedContainer">confused</div></a>
             </div>
             <div id="dayPageButtonContainer">
-                <input href="#dayPage" data-transition="fade"><img src="gfx/analyticsLogo.svg"/></input>
+                <a href="#dayPage" data-role="none" data-transition="fade" id="statLink"><img id="statIcon" src="gfx/statIcon.svg"/></a>
             </div>
         </div>
     </div>
@@ -79,10 +79,7 @@
 
     <div data-role="page" id="dayPage">
         <div data-role="main" class="ui-content">
-            <canvas id="dayCanvas"></canvas>
-        </div>
-        <div data-role="footer">
-            back
+            <a data-role="none" href="#feelPage" data-transition="fade" id="dayCanvasLink"><canvas id="dayCanvas"></canvas></a>
         </div>
     </div>
 </body>

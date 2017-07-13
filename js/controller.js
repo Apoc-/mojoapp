@@ -140,8 +140,9 @@ function initStressCircleEvent(canvas) {
             clearInterval(timer);
             var t = e.timeStamp;
             if (t - t0 > 1000) {
-                eza_transition_to("#feelPage");
-                restoreStressCircles();
+                $.mobile.navigate("#feelPage", {
+                    transition: "fade"
+                });
             }
         })
     });
@@ -178,8 +179,9 @@ function initTiredCircleEvent(canvas) {
             clearInterval(timer);
             var t = e.timeStamp;
             if (t - t0 > 1000) {
-                eza_transition_to("#feelPage");
-                restoreStressCircles();
+                $.mobile.navigate("#feelPage", {
+                    transition: "fade"
+                });
             }
         })
     });
@@ -219,8 +221,9 @@ function initConfusedCircleEvent(canvas) {
             clearInterval(timer);
             var t = e.timeStamp;
             if (t - t0 > 1000) {
-                eza_transition_to("#feelPage");
-                restoreStressCircles();
+                $.mobile.navigate("#feelPage", {
+                    transition: "fade"
+                });
             }
         })
     });
@@ -275,6 +278,10 @@ function initSettings() {
 }
 
 function initFeelingData() {
+    $("#feelPage").on("pageshow", function() {
+        restoreStressCircles();
+    });
+
     feelingData.relaxedTime = 0.0;
     feelingData.focusedTime = 0.0;
     feelingData.energizedTime = 0.0;

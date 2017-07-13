@@ -38,7 +38,7 @@
 }
 
 #feelButtonContainer {
-	line-height: 10vh;
+	line-height: 5.5vh;
 }
 
 #greetingText, #pairingText, #happyPageText {
@@ -127,7 +127,7 @@
 /**/
 #stressedContainer, #tiredContainer, #confusedContainer {
 	font-family: var(--black-font);
-	font-size: 6vh;
+	font-size: 4vh;
 	text-align: center;
 	padding: 1vh;
 
@@ -257,11 +257,22 @@
 
 a {
 	text-decoration: none; /* no underline */
+
+}
+
+#dayCanvasLink {
+	display: block;
+	line-height: 0;
 }
 
 #dayPageButtonContainer {
 	width: 100vw;
-	height: 100vh;
+	position: absolute;
+	bottom: 5vh;
+}
+
+#statLink {
+	display: block;
 }
 
 @keyframes spin {
@@ -269,8 +280,15 @@ a {
 	to {transform: rotate(360deg) scale(0.25,0.25);}
 }
 
+#statIcon {
+	height: 10vh;
+	margin-left: 40vw;
+}
+
 html, body, .ui-content {
 	height: 100vh;
+	max-height: 100vh;
 	margin: 0;
 	padding: 0;
+	overflow: hidden !important;
 }
