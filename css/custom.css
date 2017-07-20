@@ -194,43 +194,43 @@
 
 @font-face {
 	font-family: "FuturaCdExBd";
-	src: url("../Fonts/FuturaStd/FuturaStd-CondensedExtraBd.otf")
+	src: url("../fonts/FuturaStd/FuturaStd-CondensedExtraBd.otf")
 	format("opentype");
 }
 
 @font-face {
 	font-family: "HelveticaFr";
-	src: url("../Fonts/Helvetica/HelveticaLTStd-Fractions.otf")
+	src: url("../fonts/Helvetica/HelveticaLTStd-Fractions.otf")
 	format("opentype");
 }
 
 @font-face {
 	font-family: "HelveticaBlkCd";
-	src: url("../Fonts/Helvetica/HelveticaLTStd-BlkCond.otf")
+	src: url("../fonts/Helvetica/HelveticaLTStd-BlkCond.otf")
 	format("opentype");
 }
 
 @font-face {
 	font-family: "HelveticaNeueLTStd-Blk";
-	src: url("../Fonts/Helvetica/HelveticaNeueLTStd-Blk.otf")
+	src: url("../fonts/Helvetica/HelveticaNeueLTStd-Blk.otf")
 	format("opentype");
 }
 
 @font-face {
 	font-family: "Lato-Black";
-	src: url("../Fonts/Lato/Lato-Black.ttf")
+	src: url("../fonts/Lato/Lato-Black.ttf")
 	format("truetype");
 }
 
 @font-face {
 	font-family: "Lato-Bold";
-	src: url("../Fonts/Lato/Lato-Bold.ttf")
+	src: url("../fonts/Lato/Lato-Bold.ttf")
 	format("truetype");
 }
 
 @font-face {
 	font-family: "Lato-Regular";
-	src: url("../Fonts/Lato/Lato-Regular.ttf")
+	src: url("../fonts/Lato/Lato-Regular.ttf")
 	format("truetype");
 }
 
