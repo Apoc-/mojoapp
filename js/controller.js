@@ -42,9 +42,6 @@ var tcd_base = jQuery.extend(true, {}, tcd);
 var ccd_base = jQuery.extend(true, {}, ccd);
 
 $(document).ready(function () {
-    $.mobile.navigate("#splashPage", {
-        transition: "none"
-    });
 
     initSettings();
     initFeelingData();
@@ -61,7 +58,7 @@ $(document).ready(function () {
         return false;
     });
 
-    $("#splashPage").one("pageshow", function () {
+
         bindStartAnimationEvents();
         setTimeout(function () {
             $.mobile.navigate("#pairingPage", {
@@ -70,9 +67,6 @@ $(document).ready(function () {
         }, 2500);
 
         generateRandomLookup();
-
-    });
-
 
 });
 
